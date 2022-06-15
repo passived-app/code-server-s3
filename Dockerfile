@@ -32,4 +32,4 @@ WORKDIR ${PWD}
 RUN code-server --list-extensions
 RUN code-server --install-extension ms-python.python
 
-ENTRYPOINT ["./run_docker.sh"]
+ENTRYPOINT ["/home/coder/run_docker.sh"]
