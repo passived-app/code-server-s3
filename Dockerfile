@@ -4,9 +4,8 @@ ARG PWD=/home/coder/project
 
 ENV PWD=${PWD}
 
-USER ROOT
 
-RUN apt update && apt upgrade -y
+RUN apt update -y
 RUN sudo apt-get install python3-pip -y
 RUN apt -y install automake nano autotools-dev gettext-base fuse g++ git libcurl4-gnutls-dev libfuse-dev libssl-dev libxml2-dev make pkg-config
 
