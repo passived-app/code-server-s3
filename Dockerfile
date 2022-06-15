@@ -11,7 +11,7 @@ RUN sudo apt -y install automake nano autotools-dev gettext-base fuse g++ git li
 RUN git clone https://github.com/s3fs-fuse/s3fs-fuse.git
 
 RUN cd s3fs-fuse && sed -i 's/MAX_MULTIPART_CNT         = 10 /MAX_MULTIPART_CNT         = 1 /' src/fdcache_entity.cpp
-RUN cd s3fs-fuse && ./autogen.sh && ./configure && make && make install
+RUN cd s3fs-fuse && sudo ./autogen.sh && sudo ./configure && sudo make && sudo make install
 
 RUN sudo cp s3fs-fuse/src/s3fs /usr/local/bin/s3fs
 
