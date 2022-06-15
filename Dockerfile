@@ -21,8 +21,6 @@ RUN sudo sh -c 'echo "user_allow_other" >> /etc/fuse.conf'
 COPY run_docker.sh run_docker.sh
 RUN sudo chmod +x run_docker.sh
 
-RUN sudo chown -R coder:coder ${PWD}
-
 USER coder
 
 WORKDIR ${PWD}

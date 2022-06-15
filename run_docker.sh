@@ -1,5 +1,8 @@
 #!/bin/sh -e
 
+sudo mkdir -p ${PWD}
+sudo chown -R coder:coder ${PWD}
+
 mkdir -p ${PWD}/script
 sudo chown -R coder:coder ${PWD}/script
 
