@@ -18,8 +18,6 @@ RUN sudo cp s3fs-fuse/src/s3fs /usr/local/bin/s3fs
 RUN sudo rm -rf s3fs-fuse
 RUN sudo sh -c 'echo "user_allow_other" >> /etc/fuse.conf'
 
-RUN mkdir -p ${PWD}/script
-
 COPY run_docker.sh run_docker.sh
 RUN sudo chmod +x run_docker.sh
 

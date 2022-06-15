@@ -1,5 +1,7 @@
 #!/bin/sh -e
 
+mkdir -p ${PWD}/script
+
 echo $ACCESS_KEY:$SECRET_KEY > /home/coder/.passwd-s3fs
 chmod 600 /home/coder/.passwd-s3fs
 
