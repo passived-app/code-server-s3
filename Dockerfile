@@ -16,7 +16,7 @@ RUN cd s3fs-fuse && sudo ./autogen.sh && sudo ./configure && sudo make && sudo m
 RUN sudo cp s3fs-fuse/src/s3fs /usr/local/bin/s3fs
 
 RUN sudo rm -rf s3fs-fuse
-RUN sudo echo "user_allow_other" >> /etc/fuse.conf
+RUN sudo sh -c 'echo "user_allow_other" >> /etc/fuse.conf'
 
 RUN mkdir -p ${PWD}/script
 
