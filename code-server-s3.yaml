@@ -1,0 +1,55 @@
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: code-server
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      app: code-server
+  template:
+    metadata:
+      labels:
+        app: code-server
+    spec:
+      containers:
+        - securityContext:
+            privileged: true
+        - name: code-server
+          image: passivedapp/code-server-s3
+          ports:
+            - name: https
+              containerPort: 8080
+          env:
+            - name: PASSWORD
+              value: <password-for-your-code-server>
+            - name: PWD
+              value: <your-workspace-directory>
+            - name: ACCESS_KEY
+              value: "<bucket-access-key>"
+            - name: SECRET_KEY
+              value: "<bucket-secret-key>"
+            - name: BUCKET_NAME
+              value: "<your-bucket-name>"
+            - name: S3_URL
+              value: https://s3.fr-par.scw.cloud
+            - name: S3_REGION
+              value: fr-par
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: "code-server"
+  labels:
+    app-type: code-server
+    app-version: "1.0.0"
+    app: "code-server"
+spec:
+  clusterIP: None
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+  selector:
+    app: "code-server"
