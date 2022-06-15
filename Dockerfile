@@ -4,10 +4,7 @@ ARG PWD=/home/coder/project
 
 ENV PWD=${PWD}
 
-WORKDIR ${PWD}
-
-RUN code-server --list-extensions
-RUN code-server --install-extension ms-python.python
+USER ROOT
 
 RUN apt update && apt upgrade -y
 RUN sudo apt-get install python3-pip -y
@@ -30,5 +27,11 @@ RUN chmod +x run_docker.sh
 
 RUN sudo chmod 777 ${PWD}
 
+USER coder
+
+WORKDIR ${PWD}
+
+RUN code-server --list-extensions
+RUN code-server --install-extension ms-python.python
 
 ENTRYPOINT ["./run_docker.sh"]
