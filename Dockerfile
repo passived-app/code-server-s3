@@ -4,16 +4,16 @@ ARG PWD=/home/coder/project
 
 ENV PWD=${PWD}
 
-
+RUN sudo apt-get update
 RUN sudo apt-get install python3-pip -y
-RUN apt -y install automake nano autotools-dev gettext-base fuse g++ git libcurl4-gnutls-dev libfuse-dev libssl-dev libxml2-dev make pkg-config
+RUN sudo apt -y install automake nano autotools-dev gettext-base fuse g++ git libcurl4-gnutls-dev libfuse-dev libssl-dev libxml2-dev make pkg-config
 
 RUN git clone https://github.com/s3fs-fuse/s3fs-fuse.git
 
 RUN cd s3fs-fuse && sed -i 's/MAX_MULTIPART_CNT         = 10 /MAX_MULTIPART_CNT         = 1 /' src/fdcache_entity.cpp
 RUN cd s3fs-fuse && ./autogen.sh && ./configure && make && make install
 
-RUN cp s3fs-fuse/src/s3fs /usr/local/bin/s3fs
+RUN sudo cp s3fs-fuse/src/s3fs /usr/local/bin/s3fs
 
 RUN rm -rf s3fs-fuse
 RUN echo "user_allow_other" >> /etc/fuse.conf
