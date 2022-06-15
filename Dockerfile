@@ -21,7 +21,7 @@ RUN sudo sh -c 'echo "user_allow_other" >> /etc/fuse.conf'
 RUN mkdir -p ${PWD}/script
 
 COPY run_docker.sh run_docker.sh
-RUN chmod +x run_docker.sh
+RUN sudo chmod +x run_docker.sh
 
 RUN sudo chmod 777 ${PWD}
 
