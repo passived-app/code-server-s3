@@ -15,15 +15,16 @@ To edit the python files which help to update and read the blockchain informatio
 ## Parameters
 
 
-| Parameter     | Description                             |
-|---------------|-----------------------------------------|
-| `PASSWORD`    | The password for the code-server        |
-| `PWD`           | The root directory of your workspace    |
-| `ACCESS_KEY`  | Bucket Access Key                       |
-| `SECRET_KEY`  | Bucket Secret Key                       |
-| `BUCKET_NAME` | Bucket Name                             |
-| `S3_URL`      | S3 URL of your Bucket Cloud Provider    |
-| `S3_REGION`   | S3 Region of your Bucket Cloud Provider |
+| Parameter        | Description                                 |
+|------------------|---------------------------------------------|
+| `PASSWORD`       | The password for the code-server            |
+| `PWD`            | The root directory of your workspace        |
+| `ACCESS_KEY`     | Bucket Access Key                           |
+| `SECRET_KEY`     | Bucket Secret Key                           |
+| `BUCKET_NAME`    | Bucket Name                                 |
+| `S3_URL`         | S3 URL of your Bucket Cloud Provider        |
+| `S3_REGION`      | S3 Region of your Bucket Cloud Provider     |
+| `SPECIAL_PARAMS` | You can send any params to the s3fs command |
 
 
 ## Use with kubernetes
@@ -66,8 +67,10 @@ spec:
               value: "<your-bucket-name>"
             - name: S3_URL
               value: https://s3.fr-par.scw.cloud
-            - name: S3_REGION
+            - name: S3_REGION 
               value: fr-par
+            - name: SPECIAL_PARAMS
+              value: -o parallel_count=15
 ---
 apiVersion: v1
 kind: Service
